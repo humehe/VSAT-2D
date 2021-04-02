@@ -142,7 +142,7 @@ Plot_CCube_Slices(Slices_Files[0],#CSEC_ofn_c_in,
 ```
 
 
-<img src="./Figures-IM/12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-10as_crc_in-slices.jpg" width=50% height=50%><img src="./Figures/Slices2.jpg" width=50% height=50%>
+<img src="./Figures-IM/12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-10as_crc_in-slices.jpg" width=50% height=50%>
 
 
 
@@ -153,7 +153,7 @@ Finally a 2D gaussian fit can be performed.
 
 ```
 python
-CCube_fit_2D_Gaussian(cube2bplot3,slc_nmb=None,
+CCube_fit_2D_Gaussian(cube2bplot6,slc_nmb=None,
 			clp_fnc      = function ,
 			x_ref        = X0_F_0,y_ref=Y0_F_0,
 			circular     = circular_gaus,
@@ -165,17 +165,22 @@ CCube_fit_2D_Gaussian(cube2bplot3,slc_nmb=None,
 			dest_dir_plt = ana_dir_plt)#1sgm-2,3,4,5sgm,slice_1fw,slice_1fw
 
 ```
-This will generate a figure with three panels inckuding the image, the moodel and the residuals. Again this can be computed in a collapsed image or in a single channel. 
 
-![Alt text](./Figures/12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-RSD.jpg?raw=true "Stacked spectra COSMOS field.")
+This will generate a figure with three panels including the image, the moodel and the residuals. Additioinally model and resiidual fits files will be created in the ```~/Example/Stack_Results-12CO-2D/STAMPS/``` directory.
 
+```
+- 12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-MDL.fits
+- 12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-RSD.fits
+```
+
+![Alt text](./Figures-IM/12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-RSD.jpg?raw=true "Stacked spectra COSMOS field.")
 
 
 ###### "Stats"
 Stats on the datacubes can be obtained through:
 
 ```python
-Cube_Stat(cube2bplot_ms,redshift=z_sample_med,rst_frq=restframe_frequency,slc_nmb=slc_nmb1,cubewdthv=int(element[0]),frq_r=restframe_frequency,dest_dir_tbl=tbl_dir_res)
+Cube_Stat(cube2bplot_in,redshift=z_sample_med,rst_frq=restframe_frequency,slc_nmb=slc_nmb1,cubewdthv=int(element[0]),frq_r=restframe_frequency)
 ```
 
 This will generate asciii and csv tables in the ```~/Example/Stack_Results-12CO-3D/TABLES/250/``` directory.
@@ -190,7 +195,7 @@ To compute the Confidence Inteervals (CIs) of the composite spectra it is possib
 
 ```
 python
-MCMC_generator(iterations_mc,line1,line2,method,error,sbsms,sbsmn,spc_wdt_dir=cw,mask_radi_as_ms=mask_radi_as_ms)
+MCMC_generator(iterations_mc,line1,line2,method,error,'CNT_B',sbsmn,spc_wdt_dir=cw,mask_radi_as_ms=mask_radi_as_ms)
 ```
 
 This will generate a series of tables in the ```~/Example/Stack_Results-13CO-3D/TABLES/``` directory containg the MCMC statistics:
@@ -206,7 +211,7 @@ CII_HATLAS-12CO-13CO-RDS_B-MS-3-MC-50000-3-LUM-0-2-stk-250kms-crc-15as_msk_ms-st
 ```
  And a plot containing the MCMC results.
 
-![Alt text](./Figures/Sources-MC-50000-HATLAS-12CO-13CO-RDS_B-0-M3.jpg?raw=true "Stacked spectra COSMOS field.")	
+![Alt text](./Figures-IM/Sources-MC-10000-HATLAS-12CO-13CO-CNT_B-0-M3.jpg?raw=true "Stacked spectra VALES field.")	
 
 ###### "Synthetic datacubes"
 To assess the systematic errors of the flux measurements synthetic datacubes can be simulated mimicking the observational conditions. 
