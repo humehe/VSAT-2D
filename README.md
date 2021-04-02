@@ -1,7 +1,7 @@
 # VSAT-2D
 Valparaíso Stacking Analysis Tool 2D is part of the Valparaíso Stacking Analysis Tool (VSAT), and provide a series of tools for selecting, stacking, and analyzing 2D images. It is intended for stacking samples of datacubes belonging to large extragalactic catalogs by selecting subsamples of galaxies defined by their available properties (_e.g. redshift, stellar mass, star formation rate_) being possible to generate diverse (_e.g. median, average, weighted average, histogram_) composite spectra. However, it is possible to also use VSAT on smaller datasets containing any type of astronomical object.
 
-%![Alt text](./Figures/Scheme1.jpg?raw=true "3D datacube Stacked spectra Scheme.")
+#![Alt text](./Figures/Scheme1.jpg?raw=true "3D datacube Stacked spectra Scheme.")
 
 ## Content
 
