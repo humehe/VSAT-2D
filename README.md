@@ -113,7 +113,7 @@ Slices_Files = Cube_Spatial_Extract_Circular(cube2bplot,
 						Splt_Hdr_Cmt_cp=element[2],
 						dest_dir_stp = stp_dir_res)
 ```
-The datacubes will be located in the ```~/Example/Stack_Results-13CO-3D/STAMPS/250/ ```directory, and correspond to three different component: ms, in and ot and two different datacubes (per region) will be the defined  (crc), the data (dta), and the masked regions (msk).
+The stamps will be located in the ```~/Example/Stack_Results-12CO-2D/STAMPS/20/``` directory, and correspond to three different regions: measurement (ms), inner (in) and outter (ot) witth their corresponding fits files: circunscribed (crc), data (dta), and masked (msk) .
 
 ```
  - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-10as_crc_in.fits
@@ -127,7 +127,7 @@ The datacubes will be located in the ```~/Example/Stack_Results-13CO-3D/STAMPS/2
  - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-15as_msk_ms.fits
 ```
 
-Which can then be plotted to visuualize how the satamps were generated. 
+Which can be plotted to visualize the stamps.
 
 ```
 python
@@ -173,7 +173,7 @@ This will generate a figure with three panels including the image, the moodel an
 
 
 ###### "Stats"
-Stats on the datacubes can be obtained through:
+Stats on the stamps fits files can be obtained through:
 
 ```python
 Cube_Stat(cube2bplot_in,redshift=z_sample_med,rst_frq=restframe_frequency,slc_nmb=slc_nmb1,cubewdthv=int(element[0]),frq_r=restframe_frequency)
@@ -187,25 +187,38 @@ This will generate asciii and csv tables in the ```~/Example/Stack_Results-12CO-
 ```
 
 ###### "MCMC"
-To compute the Confidence Inteervals (CIs) of the composite spectra it is possible to bootstrap the spectra used in the stacking process. 
+It is possible to compute the Confidence Inteervals (CIs) of the flux measurements throough the 2D gauussian profiile on the composite stacked images through Monte Carlo process.
 
 ```
 python
 MCMC_generator(iterations_mc,line1,line2,method,error,'CNT_B',sbsmn,spc_wdt_dir=cw,mask_radi_as_ms=mask_radi_as_ms)
 ```
 
-This will generate a series of tables in the ```~/Example/Stack_Results-13CO-3D/TABLES/``` directory containg the MCMC statistics:
+This will generate a series of tables in the ```~/Example/Stack_Results-12CO-2D/PLOTS/20/MCMC/``` directory containg the MCMC statistics:
 
 ```
-Sources-MC-50000-HATLAS-12CO-13CO-RDS_B-0-M3.dat
-CII_HATLAS-RDS_B-MS-3-Z-0-2-stk-250kms-crc-15as_msk_ms-stt.dat
-CII_HATLAS-RDS_B-MS-3-FLX-0-2-stk-250kms-crc-15as_msk_ms-stt.dat
-CII_HATLAS-RDS_B-MS-3-LUM-LOG-0-2-stk-250kms-crc-15as_msk_ms-stt.dat
-CII_HATLAS-RDS_B-MS-3-RDS_B-0-2-stk-250kms-crc-15as_msk_ms-stt.dat
-CII_HATLAS-12CO-13CO-RDS_B-MS-3-MC-50000-3-FLX-0-2-stk-250kms-crc-15as_msk_ms-stt.dat
-CII_HATLAS-12CO-13CO-RDS_B-MS-3-MC-50000-3-LUM-0-2-stk-250kms-crc-15as_msk_ms-stt.dat
+- Sources-MC-10000-HATLAS-12CO-13CO-CNT_B-0-M3.dat
+- CII_HATLAS-CNT_B-MS-3-Z-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-CNT_B-MS-3-FLX-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-CNT_B-MS-3-LUM-LOG-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-CNT_B-MS-3-CNT_B-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-FLX-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-LUM-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-LUM-LOG-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-CNT_B-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-CNT_B-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-Z-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-Z-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
 ```
- And a plot containing the MCMC results.
+
+Tables foor plotting purposes in the ``` Stack_Results-12CO-2D/TABLES/PLOTS ``` directory:
+
+```
+- CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-FLX-0-0-stk-20kms-crc-15as_msk_ms-stt-PLT.dat
+```
+
+
+And a plot containing the MCMC results.
 
 ![Alt text](./Figures-IM/Sources-MC-10000-HATLAS-12CO-13CO-CNT_B-0-M3.jpg?raw=true "Stacked spectra VALES field.")	
 
