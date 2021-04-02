@@ -58,39 +58,42 @@ The Exaample.py script contains an example too stack a sample of 27 galaxies bel
 The following snippet will stack the galaxies.
 
 ```python
-Stack_Res     = Cube_Stack(cubetoread,stk_ofn_prfx,weights,
-				sig_clp     = False,sufix=element[0],freq_obs_f=restframe_frequency,
+Stack_Res     = Cube_Stack_2D(cubetoread,stk_ofn_prfx,weights,
+				sig_clp     = False      ,
+				sufix       = stk_sfx.   ,
+				freq_obs_f  = restframe_frequency,
 				stack_lite  = stack_light,
 				cp_bs_hdrs  = True,
 				stt_var     = True,
 				spc_wdt_dir = element[0],
-				stt_mst_tbl = Cat_Ipt_Tbl,stt_hdr=element[2])
+				stt_mst_tbl = Cat_Ipt_Tbl,stt_hdr=element[2],
+				lnw_wdt     = line_width_arr)
 ```
-This will generate the following fits files in the results directory (```~/Example/Stack_Results-13CO-3D/STACKS/250/```):
+This will generate the following fits files in the results directory (```~/Example/Stack_Results-12CO-2D/STACKS/20/```):
 
 ```
- - CII_HATLAS-RDS-0-stk-avg-250kms.fits 
- - CII_HATLAS-RDS-0-stk-med-250kms.fits 
- - CII_HATLAS-RDS-0-stk-sum-250kms.fits
+ - CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-sum-20kms.IM0.CNT.fits
 ```
 
-If ```stack_lite = False``` additional compsoiite spectra will be gnerated:
+If ```stack_lite = False``` additional composite spectra will be gnerated:
 
 ```
- - CII_HATLAS-RDS-0-stk-hst-250kms.fits   
- - CII_HATLAS-RDS-0-stk-std-250kms.fits  
- - CII_HATLAS-RDS-0-stk-hsw-250kms.fits
- - CII_HATLAS-RDS-0-stk-suw-250kms.fits
- - CII_HATLAS-RDS-0-stk-wsu-250kms.fits   
- - CII_HATLAS-RDS-0-stk-avw-250kms.fits 
- - CII_HATLAS-RDS-0-stk-1sl-250kms.fits
- - CII_HATLAS-RDS-0-stk-1sh-250kms.fits
- - CII_HATLAS-RDS-0-stk-2sl-250kms.fits   
- - CII_HATLAS-RDS-0-stk-2sh-250kms.fits
- - CII_HATLAS-RDS-0-stk-3sl-250kms.fits  
- - CII_HATLAS-RDS-0-stk-3sh-250kms.fits
- - CII_HATLAS-RDS-0-stk-p25-250kms.fits  
- - CII_HATLAS-RDS-0-stk-p75-250kms.fits    
+ - CII_HATLAS-CNT_B-0-stk-hst-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-std-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-hsw-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-suw-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-wsu-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-avw-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-1sl-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-1sh-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-2sl-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-2sh-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-3sl-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-3sh-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-p25-20kms.IM0.CNT.fits
+ - CII_HATLAS-CNT_B-0-stk-p75-20kms.IM0.CNT.fits
 ```
 
 
