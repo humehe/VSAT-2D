@@ -222,10 +222,6 @@ And a plot containing the MCMC results.
 
 ![Alt text](./Figures-IM/Sources-MC-10000-HATLAS-12CO-13CO-CNT_B-0-M3.jpg?raw=true "Stacked spectra VALES field.")	
 
-###### "Synthetic datacubes"
-To assess the systematic errors of the flux measurements synthetic datacubes can be simulated mimicking the observational conditions. 
-
-
 ## Dependencies
 Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
  - [astropy](https://www.astropy.org)
