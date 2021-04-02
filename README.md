@@ -1,7 +1,7 @@
 # VSAT-2D
-Valparaíso Stacking Analysis Tool 2D is part of the Valparaíso Stacking Analysis Tool (VSAT), and provide a series of tools for selecting, stacking, and analyzing 2D images. It is intended for stacking samples of datacubes belonging to large extragalactic catalogs by selecting subsamples of galaxies defined by their available properties (_e.g. redshift, stellar mass, star formation rate_) being possible to generate diverse (_e.g. median, average, weighted average, histogram_) composite spectra. However, it is possible to also use VSAT on smaller datasets containing any type of astronomical object.
+Valparaíso Stacking Analysis Tool 2D is part of the Valparaíso Stacking Analysis Tool (VSAT), and provide a series of tools for selecting, stacking, and analyzing _moment-0_ intensity maps from interferometric datasets . It is intended for stacking samples of datacubes belonging to large extragalactic catalogs by selecting subsamples of galaxies defined by their available properties (_e.g. redshift, stellar mass, star formation rate_) being possible to generate diverse (_e.g. median, average, weighted average, histogram_) composite spectra. However, it is possible to also use VSAT on smaller datasets containing any type of astronomical object and any type of 2D image.
 
-![Alt text](./Figures-IM/Scheme2.jpg?raw=true "3D datacube Stacked spectra Scheme.")
+![Alt text](./Figures-IM/Scheme2.jpg?raw=true "3D moment-0 map Scheme.")
 
 ## Content
 
@@ -98,7 +98,7 @@ If ```stack_lite = False``` additional composite spectra will be gnerated:
 
 
 ###### "Stamps"
-To measure the source's flux, smaller circular datacubes along the veloocity/frequency axis can be created. The following will create a 15'', 10'' and 20'' datacubes. In this example these regions use the image center (```X0_F, Y0_F```) as reference but this can be defined with the ```X_C,Y_C```parameters.
+To measure the source's flux, stamps can be created. The following snippet will create a 15'', 10'' and 20'' stamps considering ```CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT.fits``` as inputt image. In this example these regions use the image center (```X0_F, Y0_F```) as reference but this can be defined with the ```X_C,Y_C```parameters.
 
 ```
 python
@@ -116,126 +116,58 @@ Slices_Files = Cube_Spatial_Extract_Circular(cube2bplot,
 The datacubes will be located in the ```~/Example/Stack_Results-13CO-3D/STAMPS/250/ ```directory, and correspond to three different component: ms, in and ot and two different datacubes (per region) will be the defined  (crc), the data (dta), and the masked regions (msk).
 
 ```
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-10as_crc_in.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-10as_dta_in.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-10as_msk_in.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-20as_crc_ot.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-20as_dta_ot.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-20as_msk_ot.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-15as_crc_ms.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-15as_dta_ms.fits
- - 13CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-15as_msk_ms.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-10as_crc_in.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-10as_dta_in.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-10as_msk_in.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-20as_crc_ot.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-20as_dta_ot.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-20as_msk_ot.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-15as_crc_ms.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-15as_dta_ms.fits
+ - 12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-15as_msk_ms.fits
 ```
 
-Which can then be plotted to generate individual stamps of each channel cube. 
-
-```
-python
-Plot_Cube_Slices(Slices_Files[0],Slices_Files[1],Slices_Files[2],
-		Slices_Files[3],Slices_Files[4],Slices_Files[5],
-		frq_r=restframe_frequency, prefix=prefix_line,dest_dir_plt=stm_dir_plt)
-```
-
-
-<img src="./Figures/Slices1.jpg" width=50% height=50%><img src="./Figures/Slices2.jpg" width=50% height=50%>
-
-
-
-###### "Line Fit"
-First to identify the locatioion of the maximum flux in the spectral axis.
+Which can then be plotted to visuualize how the satamps were generated. 
 
 ```
 python
-fit_1D_Gaussian(cube2bplot6,verbose=True,amplitude=0.001,
-	mean=-60,stddev=element[0]/2. * np.sqrt(2. *np.log(2.)),
-	slc_nmb=slice_nmb,max_rng=True,cubewdthv=element[0],
-	rst_frq=restframe_frequency,frq_r=restframe_frequency,
-	prefix=prefix_line,dest_dir_plt = ana_dir_plt)
-```
-
-![Alt text](./Figures/12CO-12CO-CII_HATLAS-RDS_B-0-stk-avg-250kms-crc-10as_msk_in-1DGF.jpg?raw=true "Stacked spectra computed COSMOS field.")
-
-
-Then a 1D gaussian profile is itted.
-
-```
-python
-Cube_fit_1D_Gaussian(cube2bplot6,
-			Cube2bPlot_1D_Err  = cube2bplot4        ,verbose = True   ,
-			amplitude          = 0.001              ,mean    = -60    ,stddev    = element[0]/2. * np.sqrt(2. * np.log(2.)),
-			slc_nmb            = slice_nmb          ,max_rng = True   ,cubewdthv = element[0]  ,
-			rst_frq            = restframe_frequency,frq_r   = restframe_frequency,
-			fit_max_1d         = False              ,							
-			fit_type           = 'scipy',
-			prefix             = line+'-'           ,
-			dest_dir_plt       = ana_dir_plt)#astropy,scipy,lmfit
-
+Plot_CCube_Slices(Slices_Files[0],#CSEC_ofn_c_in,
+		Slices_Files[1],
+		Slices_Files[2],
+		Slices_Files[3],
+		Slices_Files[4],
+		Slices_Files[5],
+		frq_r=restframe_frequency,
+		prefix=prefix_line)
 ```
 
 
-![Alt text](./Figures/12CO-12CO-CII_HATLAS-RDS_B-0-stk-avg-250kms-crc-15as_msk_ms-2DS.jpg?raw=true "Stacked spectra computed COSMOS field.")
+<img src="./Figures-IM/12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-10as_crc_in-slices.jpg" width=50% height=50%><img src="./Figures/Slices2.jpg" width=50% height=50%>
 
-After this an image of the central channel at which the flux maximum is located and a collapsed image considering the channalesd defined by the fwhm previously fitted can be created.
 
-<img src="./Figures/12CO-12CO-CII_HATLAS-RDS_B-0-stk-avg-250kms-crc-15as_msk_ms-2DS.jpg" width=50% height=50%><img src="./Figures/12CO-12CO-CII_HATLAS-RDS_B-0-stk-avg-250kms-crc-15as_msk_ms-2DC-sum.jpg" width=50% height=50%>
 
-It can also be created considering the original fits file area.
+###### "2D-Gaussian Fit"
 
-<img src="./Figures/12CO-CII_HATLAS-RDS_B-0-stk-avg-250kms-2DS.jpg" width=50% height=50%><img src="./Figures/12CO-CII_HATLAS-RDS_B-0-stk-avg-250kms-2DC-sum.jpg" width=50% height=50%>
-```
-python
-Slices_Files = Cube_Spatial_Extract_Circular_2D(cubeclp2b_stmp,
-						X0_F,Y0_F,
-						mask_radi_px_in,mask_radi_as_in,
-						mask_radi_px_ot,mask_radi_as_ot,
-						mask_radi_px_ms,mask_radi_as_ms,
-						x_ref=X0_F_0,y_ref=Y0_F_0,
-						verbose=True,
-						frq_r=restframe_frequency, prefix=prefix_line,
-						Splt_Hdr_Cmt_cp=element[2],
-						dest_dir_stp = stp_dir_res)
-```
-###### "Noise"
-To assess the noise level outside the channels where the line is lcoated _noise_ collapsed image can be created considering the same number of channels defined by  line fwhm fittted before.
-
-```
-python
-Cube_fit_2D_Gaussian_Noise(cube2bplot6,
-				slc_nmb      = None               ,clp_fnc     = function ,
-				SIGMAX_f2DG  = fwhm2sigma(9*tms_sgm)      ,SIGMAY_f2DG = fwhm2sigma(9*tms_sgm)      ,
-				displ_s_f    = True               ,verbose     = True,circular=True,
-				x_ref        = X0_F_0             ,y_ref       = Y0_F_0,
-				rst_frq      = restframe_frequency,frq_r       = restframe_frequency,
-				sgm_wgth_tms = 'slice_1fw',
-				dest_dir_plt = ana_dir_plt,
-				dest_dir_clp = stp_dir_res,
-				ref_wdt_lne  = spc_wdl_ref       ,ref_wdt_fle = cube2bplot6_ref)
-```
-
-![Alt text](./Figures/12CO-CII_HATLAS-RDS-0-stk-avg-250kms-crc-15as_dta_ms-2DCGF-sum-nse.jpg?raw=true "Stacked spectra COSMOS field.")
 
 Finally a 2D gaussian fit can be performed. 
 
 ```
 python
-Cube_fit_2D_Gaussian(cube2bplot6,
-			Cube2bFit_Err = cube2bplotmskerr,				
-			slc_nmb       = slice_nmb01        ,clp_fnc     = function ,
-			sgm_fnc       = element[3]         ,
-			SIGMAX_f2DG   = fwhm2sigma(9*tms_sgm)      ,SIGMAY_f2DG = fwhm2sigma(9*tms_sgm)      ,
-			displ_s_f     = True               ,verbose     = True,circular=True,
-			x_ref         = X0_F_0             ,y_ref       = Y0_F_0,
-			rst_frq       = restframe_frequency,frq_r       = restframe_frequency,
-			sgm_wgth_tms  = 'slice_1fw',#1sgm-2,3,4,5sgm,slice_1fw,slice_2fw
-			fit_type      = 'scipy'            ,src_sze_fxd = fixed_size,
-			dest_dir_plt  = ana_dir_plt,
-			ref_wdt_lne   = spc_wdl_ref        ,ref_wdt_fle = cube2bplot6_ref,
-			Splt_Hdr_Cmt_cp=element[2]          ,dest_dir_clp  = stp_dir_res)
+CCube_fit_2D_Gaussian(cube2bplot3,slc_nmb=None,
+			clp_fnc      = function ,
+			x_ref        = X0_F_0,y_ref=Y0_F_0,
+			circular     = circular_gaus,
+			SIGMAX_f2DG  = fwhm2sigma(9*tms_sgm),SIGMAY_f2DG=fwhm2sigma(9*tms_sgm),
+			displ_s_f    = True,verbose=True,						
+			rst_frq      = restframe_frequency,
+			frq_r        = restframe_frequency,prefix=prefix_line,sgm_fnc=None,
+			sgm_wgth_tms = 'slice_1fw',src_sze_fxd = fixed_size,
+			dest_dir_plt = ana_dir_plt)#1sgm-2,3,4,5sgm,slice_1fw,slice_1fw
 
 ```
 This will generate a figure with three panels inckuding the image, the moodel and the residuals. Again this can be computed in a collapsed image or in a single channel. 
 
-![Alt text](./Figures/12CO-CII_HATLAS-RDS-0-stk-med-250kms-crc-15as_dta_ms-2DCGF-CSL8-RSD.jpg?raw=true "Stacked spectra COSMOS field.")
+![Alt text](./Figures/12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-RSD.jpg?raw=true "Stacked spectra COSMOS field.")
 
 
 
