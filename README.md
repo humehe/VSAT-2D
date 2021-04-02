@@ -169,7 +169,7 @@ This will generate a figure with three panels including the image, the moodel an
 - 12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-RSD.fits
 ```
 
-![Alt text](./Figures-IM/12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-RSD.jpg?raw=true "Stacked spectra COSMOS field.")
+![Alt text](./Figures-IM/12CO-CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-RSD.jpg?raw=true "Stacked spectra COSMOS field.")
 
 
 ###### "Stats"
