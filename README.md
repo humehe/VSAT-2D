@@ -211,7 +211,7 @@ This will generate a series of tables in the ```~/Example/Stack_Results-12CO-2D/
 - CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-Z-0-0-stk-20kms-crc-15as_msk_ms-stt.dat
 ```
 
-Tables foor plotting purposes in the ``` Stack_Results-12CO-2D/TABLES/PLOTS ``` directory:
+Tables for plotting purposes in the ``` Stack_Results-12CO-2D/TABLES/PLOTS ``` directory:
 
 ```
 - CII_HATLAS-12CO-13CO-CNT_B-MS-3-MC-10000-3-FLX-0-0-stk-20kms-crc-15as_msk_ms-stt-PLT.dat
@@ -221,7 +221,7 @@ Tables foor plotting purposes in the ``` Stack_Results-12CO-2D/TABLES/PLOTS ``` 
 And a plot containing the MCMC results.
 
 ![Alt text](./Figures-IM/Sources-MC-10000-HATLAS-12CO-13CO-CNT_B-0-M3.jpg?raw=true "Stacked spectra VALES field.")	
-S
+
 ## Dependencies
 Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
  - [astropy](https://www.astropy.org)
