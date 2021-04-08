@@ -220,8 +220,13 @@ And a plot containing the MCMC results.
 ![Alt text](./Figures-IM/Sources-MC-10000-HATLAS-12CO-13CO-CNT_B-0-M3.jpg?raw=true "Stacked spectra VALES field.")	
 
 Notice that to ruun the MCMC process, stacking and fitting for 12CO and 13CO are needed, or simply repeat ```line1``` and ```line2 parameters.
+
+###### "Synthetic datacubes"
+To assess the systematic errors of the flux measurements synthetic datacubes can be simulated mimicking the observational conditions. See [VSAT-Syn](https://github.com/humehe/VSAT-Syn) for details.
+
+
 ## Dependencies
-Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
+Currently VSAT works only with astropy 2.0. However a new version will be released dropping this dependency.
  - [astropy](https://www.astropy.org)
  - [bottleneck](https://pypi.org/project/Bottleneck/)
  - [pandas](https://pandas.pydata.org)
