@@ -36,23 +36,23 @@ VSAT-2D is part of the Valparaíso Stacking Analysis Tool (VSAT), and provide a 
    - Auxiliary functions for the stacking analysis.
 
 ## Parameters
-VSAT-2D generates composite 2D images coming from _moment-0_ intensity maps generated with CASA from ALMA interferometric observations. VSAT-2D was used ([Méndez-Hernández+20](https://ui.adsabs.harvard.edu/abs/2020MNRAS.497.2771M/abstract)) to stack faint emission lines (_i.e. $^{13}$CO, 18CO_) in 27 star-forming galaxies belonging to othe Valparaíso Line Emission ALMA/APEX Survey ([Villanueva+17](https://ui.adsabs.harvard.edu/abs/2017MNRAS.470.3775V/abstract)); however it is possible to combine any other set of 2D images. After the composite datacubes are generated, it is possible to measure the flux of a source through a gaussian model. 
+VSAT-2D generates composite 2D images coming from _moment-0_ intensity maps generated with CASA from ALMA interferometric observations. VSAT-2D was used ([Méndez-Hernández+20](https://ui.adsabs.harvard.edu/abs/2020MNRAS.497.2771M/abstract)) to stack the faint emission lines (_i.e. 13CO, 18CO_) from 27 star-forming galaxies belonging to the Valparaíso Line Emission ALMA/APEX Survey ([Villanueva+17](https://ui.adsabs.harvard.edu/abs/2017MNRAS.470.3775V/abstract)); however it is possible to combine any other set of 2D images. After the composite datacubes are generated, it is possible to measure the flux of a source through a gaussian model. 
 
 ###### "Stacking"
-There are two different options to use the stacking procedure a _lite_ version (```stack_lite=True```) which will generate _sum, median and average_ compositte datacubes and a _full_ version (```stack_lite=False```) which additionally will create _histograms, weighted average, percentiles_ composite datacubes. By default the lite version is defined. Through ```sigma_clipping=True```it is possible to exlude outliers that exceed n-times (```sigma_cut```) the mean/median ``` sigma_cen_fct ``` of the stacked pixels. 
+There are two different options to use the stacking procedure: ```stack_lite=True``` will generate _sum, median and average_ composite datacubes and ```stack_lite=False``` will additionally create _histograms, weighted average, percentiles_ composite datacubes. By default the lite version is defined. Through ```sigma_clipping=True``` it is possible to exlude outliers that exceed n-times (```sigma_cut```) the mean/median (``` sigma_cen_fct ```) of the combined pixels. 
 
 ###### "Stamps"
-To measure the flux it is possible to create smaller datacubes ("_stamps_") around any partticular _ra, dec_ position withiin a circular region. ```apertures_measu``` defines the flux measurement regioin, while ```apertures_inner``` and ```apertures_outer```define an outter ring useful for noise estimations.  
+To measure the flux it is possible to create smaller datacubes ("_stamps_") around any particular _ra, dec_ position within a circular region. ```apertures_measu``` defines the flux measurement region, while ```apertures_inner``` and ```apertures_outer```define the radii of an outter ring useful for noise estimations.  
 
 ###### "Fitting"
-The flux estimation is computed analytically through a 3D-gauussian model. First the spectrral/velociity location of the maximum flux emission is determined through a 1D gaussian model, althoough it is possible to fix the channel at which the peak is located. Then the flux contained in a region previously defined by ```apertures_measu```is computed through a 2D gaussian profile to obtain the size ($\sigma_{x,y}$) and the amplitude (_A_).
+The flux estimation is computed analytically through a 3D-gauussian model. First the spectrral/velociity location of the maximum flux emission is determined through a 1D gaussian model, hpweever it is alsoo possible to fix the channel at which the peak is located. Then the flux contained in a region previously defined by ```apertures_measu```is computed through a 2D gaussian profile to obtain the size (sigma_x,y) and the amplitude (_A_).
 
 ###### "MCMC"
-To compute the Confident Intervals (CIs) of the flux measurments it is possible to run Monte Carlo simulations defined by the flux measurements previously computed and by the statistical properties of the used sample. ```iterations_mc``` define the nuumer of repetititions, ```plot_dist_hist=True``` will create hiistograms of the simulations if the lines defined by ```line1```and ```line2```.
+To compute the Confident Intervals (CIs) of the flux measurments it is possible to run Monte Carlo simulations defined by the flux measurements previously computed and by the statistical properties of the sample. ```iterations_mc``` define the number of repetititions, ```plot_dist_hist=True``` will create histograms of the simulations if the lines defined by ```line1```and ```line2```.
 
 ## Example
 
-The Example.py script contains an example too stack a sample of 27 galaxies belonging to the Valparaíso ALMA/APEX Line Emission Survey(VALES) ([Villanueva+17](https://ui.adsabs.harvard.edu/abs/2017MNRAS.470.3775V/abstract)). The sample of spectra can be downloaded from the [zenodo repository](https://zenodo.org/record/4671110#.YG5tLS35TOQ). Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
+The Example.py script contains an example to stack a sample of 27 galaxies belonging to the Valparaíso ALMA/APEX Line Emission Survey(VALES) ([Villanueva+17](https://ui.adsabs.harvard.edu/abs/2017MNRAS.470.3775V/abstract)). The sample of spectra can be downloaded from the [zenodo repository](https://zenodo.org/record/4671110#.YG5tLS35TOQ). Running ```python Example.py``` will complete all the following steps described below. The following snippets are extracts contained in the Example.py file and will guide you through the file. 
 
 ###### "Stacking"
 The following snippet will stack the galaxies.
@@ -98,10 +98,9 @@ If ```stack_lite = False``` additional composite spectra will be gnerated:
 
 
 ###### "Stamps"
-To measure the source's flux, stamps can be created. The following snippet will create a 15'', 10'' and 20'' stamps considering ```CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT.fits``` as inputt image. In this example these regions use the image center (```X0_F, Y0_F```) as reference but this can be defined with the ```X_C,Y_C```parameters.
+To measure the source's flux, stamps can be created. The following snippet will create a 15'', 10'' and 20'' stamps considering ```CII_HATLAS-CNT_B-0-stk-avg-20kms.IM0.CNT.fits``` as input image. In this example these regions use the image center (```X0_F, Y0_F```) as reference but this can be defined with the ```X_C,Y_C```parameters.
 
-```
-python
+```python
 Slices_Files = Cube_Spatial_Extract_Circular(cube2bplot,
 						X0_F,Y0_F,
 						mask_radi_px_in,mask_radi_as_in,
@@ -129,8 +128,7 @@ The stamps will be located in the ```~/Example/Stack_Results-12CO-2D/STAMPS/20/`
 
 Which can be plotted to visualize the stamps.
 
-```
-python
+```python
 Plot_CCube_Slices(Slices_Files[0],#CSEC_ofn_c_in,
 		Slices_Files[1],
 		Slices_Files[2],
@@ -148,8 +146,7 @@ Plot_CCube_Slices(Slices_Files[0],#CSEC_ofn_c_in,
 
 Finally a 2D gaussian fit can be performed. 
 
-```
-python
+```python
 CCube_fit_2D_Gaussian(cube2bplot6,slc_nmb=None,
 			clp_fnc      = function ,
 			x_ref        = X0_F_0,y_ref=Y0_F_0,
@@ -162,7 +159,7 @@ CCube_fit_2D_Gaussian(cube2bplot6,slc_nmb=None,
 			dest_dir_plt = ana_dir_plt)#1sgm-2,3,4,5sgm,slice_1fw,slice_1fw
 ```
 
-This will generate a figure with three panels including the image, the moodel and the residuals. Additioinally model and resiidual fits files will be created in the ```~/Example/Stack_Results-12CO-2D/STAMPS/``` directory.
+This will generate a figure with three panels including the image, the model and the residuals. Model and resiidual fits files will also be created and saved in the ```~/Example/Stack_Results-12CO-2D/STAMPS/``` directory.
 
 ```
 - 12CO-CII_HATLAS-CNT_B-0-stk-med-20kms.IM0.CNT-crc-15as_dta_ms-2DCGF-sum-MDL.fits
@@ -222,6 +219,7 @@ And a plot containing the MCMC results.
 
 ![Alt text](./Figures-IM/Sources-MC-10000-HATLAS-12CO-13CO-CNT_B-0-M3.jpg?raw=true "Stacked spectra VALES field.")	
 
+Notice that to ruun the MCMC process, stacking and fitting for 12CO and 13CO are needed, or simply repeat ```line1``` and ```line2 parameters.
 ## Dependencies
 Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
  - [astropy](https://www.astropy.org)
