@@ -1,5 +1,5 @@
 # VSAT-2D
-VSAT-2D is part of the Valparaíso Stacking Analysis Tool (VSAT), and provide a series of tools for selecting, stacking, and analyzing _moment-0_ intensity maps from interferometric datasets . It is intended for stacking samples of datacubes belonging to large extragalactic catalogs by selecting subsamples of galaxies defined by their available properties (_e.g. redshift, stellar mass, star formation rate_) being possible to generate diverse (_e.g. median, average, weighted average, histogram_) composite spectra. However, it is possible to also use VSAT-2D on smaller datasets containing any type of astronomical object and any type of 2D image.
+VSAT-2D is part of the Valparaíso Stacking Analysis Tool (VSAT), and provide a series of tools for selecting, stacking, and analyzing _moment-0_ intensity maps from interferometric datasets . It is intended for stacking samples of datacubes belonging to large extragalactic catalogs by selecting subsamples of galaxies defined by their available properties (_e.g. redshift, stellar mass, star formation rate_) being possible to generate different (_e.g. median, average, weighted average, histogram_) composite spectra. However, it is possible to also use VSAT-2D on smaller datasets containing any type of astronomical object and any type of 2D image.
 
 ![Alt text](./Figures-IM/Scheme2.jpg?raw=true "3D moment-0 map Scheme.")
 
@@ -32,11 +32,11 @@ VSAT-2D is part of the Valparaíso Stacking Analysis Tool (VSAT), and provide a 
 8. Fnc_Stk_Tbl.py
    - Functions to read, write and modify different tables.
  
- 9. Fnc_Stk_Utl.py
+9. Fnc_Stk_Utl.py
    - Auxiliary functions for the stacking analysis.
 
 ## Parameters
-VSAT-2D generates composite 2D images coming from _moment-0_ intensity maps generated with CASA from ALMA interferometric observation. However it is possible to combine any other set of 2D images. After the composite datacubes are generated, it is possible to measure the flux of a source through a gaussian model. 
+VSAT-2D generates composite 2D images coming from _moment-0_ intensity maps generated with CASA from ALMA interferometric observations. VSAT-2D was used [Méndez-Hernández+20](https://ui.adsabs.harvard.edu/abs/2020MNRAS.497.2771M/abstract) to stack faint emission lines (_i.e. 13CO, 18CO_) in 27 star-forming galaxies belonging to othe Valparaíso Line Emission ALMA/APEX Survey ([Villanueva+17](https://ui.adsabs.harvard.edu/abs/2017MNRAS.470.3775V/abstract)); however it is possible to combine any other set of 2D images. After the composite datacubes are generated, it is possible to measure the flux of a source through a gaussian model. 
 
 ###### "Stacking"
 There are two different options to use the stacking procedure a _lite_ version (```stack_lite=True```) which will generate _sum, median and average_ compositte datacubes and a _full_ version (```stack_lite=False```) which additionally will create _histograms, weighted average, percentiles_ composite datacubes. By default the lite version is defined. Through ```sigma_clipping=True```it is possible to exlude outliers that exceed n-times (```sigma_cut```) the mean/median ``` sigma_cen_fct ``` of the stacked pixels. 
@@ -52,7 +52,7 @@ To compute the Confident Intervals (CIs) of the flux measurments it is possible 
 
 ## Example
 
-The Exaample.py script contains an example too stack a sample of 27 galaxies belonging to the Valpara\'iso ALMA/APEX Line Emission Survey(VALES). The sample of spectra can be downloaded from the [zenodo repository](https://zenodo.org/record/4671110#.YG5tLS35TOQ). Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
+The Example.py script contains an example too stack a sample of 27 galaxies belonging to the Valpara\'iso ALMA/APEX Line Emission Survey(VALES). The sample of spectra can be downloaded from the [zenodo repository](https://zenodo.org/record/4671110#.YG5tLS35TOQ). Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
 
 ###### "Stacking"
 The following snippet will stack the galaxies.
