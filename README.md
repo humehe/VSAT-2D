@@ -52,7 +52,7 @@ To compute the Confident Intervals (CIs) of the flux measurments it is possible 
 
 ## Example
 
-The Exaample.py script contains an example too stack a sample of 27 galaxies belonging to the Valpara\'iso ALMA/APEX Line Emission Survey(VALES). The sample of spectra can be downloaded from the [zenodo repository](). Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
+The Exaample.py script contains an example too stack a sample of 27 galaxies belonging to the Valpara\'iso ALMA/APEX Line Emission Survey(VALES). The sample of spectra can be downloaded from the [zenodo repository](https://zenodo.org/record/4671110#.YG5tLS35TOQ). Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
 
 ###### "Stacking"
 The following snippet will stack the galaxies.
